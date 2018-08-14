@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import {NavBar, List, WingBlank, WhiteSpace, InputItem, Radio, Button} from 'antd-mobile'
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom'
 
 import Logo from '../../components/logo/logo';
+import {regist} from "../../redux/actions/actions";
 
 /*注册路由组件*/
-export default class Register extends Component {
+class Regist extends Component {
 
   // 初始化状态
   state = {
@@ -21,7 +24,7 @@ export default class Register extends Component {
   };
 
   // 请求注册
-  register = () => {
+  regist = () => {
     console.log(this.state)
   };
 
@@ -33,8 +36,13 @@ export default class Register extends Component {
 
   render () {
     const {type} = this.state;
+    const {msg,redirectTo} = this.props.user;
+    if(redirectTo){
+      return <Redirect to={redirectTo}/>
+    }
     return (
       <div>
+        <p className='error-msg'>{msg}</p>
         <NavBar>用户注册</NavBar>
         <Logo/>
         <WingBlank>
@@ -54,7 +62,7 @@ export default class Register extends Component {
               <Radio checked={type==='dashen'} onChange={() => {this.handleChange('type', 'dashen')}}>大神</Radio>
             </List.Item>
             <WhiteSpace/>
-            <Button type='primary' onClick={this.register}>注&nbsp;&nbsp;册</Button>
+            <Button type='primary' onClick={this.regist}>注&nbsp;&nbsp;册</Button>
             <WhiteSpace/>
             <Button onClick={this.toLogin}>已有账户</Button>
           </List>
@@ -63,3 +71,8 @@ export default class Register extends Component {
     )
   }
 }
+export default connect(
+  state => ({user: state.user}),  // 向UI组件Register中传入哪些一般属性
+  {regist} // 向UI组件Register中传入哪些函数属性
+  // 传给UI组件不是异步action函数本身, 而是包含分发异步action的一个新的函数
+)(Regist)

@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import {NavBar,List,WingBlank,WhiteSpace,InputItem,Radio,Button} from 'antd-mobile'
+import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 
-import Logo from '../../components/logo/logo'
+
+import Logo from '../../components/logo/logo';
+import {login} from '../../redux/actions/actions'
 
 /*登录路由组件*/
-export default class Login extends Component{
+class Login extends Component{
 
   //初始化状态
   state = {
@@ -13,7 +17,7 @@ export default class Login extends Component{
 
   };
   //跳转到注册
-  toRegister = () =>{
+  toRegist = () =>{
     this.props.history.replace('/regist')
   };
 
@@ -27,8 +31,15 @@ export default class Login extends Component{
     })
   };
   render(){
+    const {type} = this.state
+    const {msg,redirectTo} = this.props.user;
+    if(redirectTo){
+      return<Redirect to={redirectTo}/>
+    //  在render（）中实现自动跳转的路由
+    }
     return (
       <div>
+        <p className='error-msg'>{msg}</p>
         <NavBar>用户登陆</NavBar>
         <Logo/>
         <WingBlank>
@@ -41,10 +52,15 @@ export default class Login extends Component{
             <WhiteSpace/>
             <Button type='primary' onClick={this.login}>登&nbsp;&nbsp;陆</Button>
             <WhiteSpace/>
-            <Button onClick={this.toRegister}>没有账户</Button>
+            <Button onClick={this.toRegist}>没有账户</Button>
           </List>
         </WingBlank>
       </div>
     )
   }
 }
+export default connect(
+  state=>({user:state.user}),
+  {login}
+)(Login)
+
