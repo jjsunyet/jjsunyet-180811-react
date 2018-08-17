@@ -7,9 +7,9 @@ import Login from './container/login/login'
 import Regist from './container/regist/regist'
 import Main from './container/main/main'
 import store from './redux/store/store'
-// import App from './components/app/App';
 
-// ReactDom.render(<App />,document.getElementById('root'));
+import './assets/css/index.less';
+
 ReactDom.render(
   <Provider store={store}>
     <HashRouter>

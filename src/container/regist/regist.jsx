@@ -26,6 +26,7 @@ class Regist extends Component {
   // 请求注册
   regist = () => {
     console.log(this.state)
+    this.props.regist(this.state)
   };
 
   handleChange = (name, val) => {
@@ -42,11 +43,11 @@ class Regist extends Component {
     }
     return (
       <div>
-        <p className='error-msg'>{msg}</p>
         <NavBar>用户注册</NavBar>
         <Logo/>
         <WingBlank>
           <List>
+            <p className='error-msg'>{msg}</p>
             <InputItem type='text' placeholder='请输入用户名'
                        onChange={(val) => this.handleChange('username', val)}>用户名: </InputItem>
             <WhiteSpace/>

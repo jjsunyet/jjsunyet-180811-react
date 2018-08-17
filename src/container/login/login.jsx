@@ -24,6 +24,7 @@ class Login extends Component{
   //请求登录
   login = () =>{
     console.log(this.state);
+    this.props.login(this.state);
   };
   handleChange =(name,val) => {
     this.setState({
@@ -39,18 +40,19 @@ class Login extends Component{
     }
     return (
       <div>
-        <p className='error-msg'>{msg}</p>
         <NavBar>用户登陆</NavBar>
         <Logo/>
         <WingBlank>
+
           <List>
+            <p className='error-msg'>{msg}</p>
             <InputItem type='text' placeholder='请输入用户名'
                        onChange={(val) => this.handleChange('username', val)}>用户名: </InputItem>
             <WhiteSpace/>
             <InputItem type='password' placeholder='请输入密码'
                        onChange={(val) => this.handleChange('password', val)}>密码: </InputItem>
             <WhiteSpace/>
-            <Button type='primary' onClick={this.login}>登&nbsp;&nbsp;陆</Button>
+            <Button type='primary' onClick={this.login}>登&nbsp;&nbsp;录</Button>
             <WhiteSpace/>
             <Button onClick={this.toRegist}>没有账户</Button>
           </List>

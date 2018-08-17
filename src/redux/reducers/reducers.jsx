@@ -1,10 +1,13 @@
 //reducer的包裹集合
 import {combineReducers} from 'redux';
-//管理fun1状态的reducer
+
 import {
   AUTH_SUCCESS,
   ERROR_MSG,
+  RESET_USER,
+  RECEIVE_USER
 } from '../action-types/action-types'
+import {getRedirectPath} from "../../utils";
 
 const initUser = {
   username:'',
@@ -18,16 +21,28 @@ function user(state = initUser,action) {
     case  AUTH_SUCCESS:
       const user = action.data;
       //返回用户信息，并跳转到一个新的页面
-      return {...user,redirectTo:'/'};
+      return {...user,redirectTo:getRedirectPath(user.type,user.header)};
     case ERROR_MSG:
       const msg = action.data;
-      return{...state,msg}
+      return{...state,msg};
+    case RECEIVE_USER:
+      return action.data;
+    case RESET_USER:
+      return {...initUser,msg:action.data};
     default:
       return state
   }
 }
-
-export default  combineReducers({user})
+const initUserList = [];
+function userList(state = initUserList,action) {
+  switch (action.type){
+    /*case RECEIVE_USER_LIST:
+      return action.data;*/
+    default:
+      return state
+  }
+}
+export default  combineReducers({user,userList})
 /*
 * 1.向外暴露是一个整合后的reducer函数,格式为：function (state,action)
 * 2.state的结构为 ： {fun1：fun（），fun2: fun2（）}
