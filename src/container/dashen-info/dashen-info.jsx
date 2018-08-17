@@ -36,7 +36,7 @@ class DashenInfo extends Component{
         <div>
             <NavBar>sharpGuy</NavBar>
             <HeaderSelector setHeader={this.setHeader}/>
-            <InputItem onChange={val=>{this.handleChange('post',val)}}>求职岗位：</InputItem>/>
+            <InputItem onChange={val=>{this.handleChange('post',val)}}>求职岗位：</InputItem>
             <TextareaItem
               title='技术类型：'
               rows = {3}

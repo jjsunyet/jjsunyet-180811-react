@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Switch,Route,Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie';
 import {connect} from 'react-redux'
+import {NavBar} from 'antd-mobile'
 
 import LaobanInfo from '../laoban-info/laoban-info';
 import DashenInfo from '../dashen-info/dashen-info';
@@ -23,11 +24,13 @@ class Main extends Component {
 
   render() {
     const userid = Cookies.get('userid');
+    console.log(userid)
     if (!userid) {
       return <Redirect to='/login'/>
     }
-    const user = this.props;
+    const {user} = this.props;
     if (!user._id) {
+      console.log(user._id);
       return <div>LOADING……</div>
     }
     const path = this.props.location.pathname;
@@ -38,7 +41,12 @@ class Main extends Component {
       if(path==='/dashen'){
         return <Redirect to  = '/dashen'/>
       }
-      this.navList[0].hide = true;
+      // this.navList[1].hide = true;
+    }else{
+      if(path==='laoban'){
+        return <Redirect to = '/dashen'/>
+      }
+      // this.navList[0].hide = true;
     }
   /*  const currentNav = this.navList.find((nav,index)=>nav.path === path)*/
     return (
@@ -52,16 +60,6 @@ class Main extends Component {
       </div>
     )
   }
-
-  /*   return (
-      <div>
-        <Switch>
-          <Route path='/laobanInfo' component={LaobanInfo}/>
-          <Route path='/dashenInfo' component={DashenInfo}/>
-        </Switch>
-      </div>
-     )*/
-
 }
 
 export default connect(

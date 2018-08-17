@@ -1,13 +1,12 @@
 //reducer的包裹集合
 import {combineReducers} from 'redux';
-
+import {getRedirectPath} from "../../utils";
 import {
   AUTH_SUCCESS,
   ERROR_MSG,
   RESET_USER,
   RECEIVE_USER
 } from '../action-types/action-types'
-import {getRedirectPath} from "../../utils";
 
 const initUser = {
   username:'',

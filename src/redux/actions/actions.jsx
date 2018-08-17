@@ -56,9 +56,11 @@ export function login({username,password}) {
     }
 
     /*执行异步（也即发送Ajax）*/
-    const resp = await reqLogin({username, password});
+    const resp = await reqLogin(username, password);/*看api--index.js里面reqLogin传的值*/
+    console.log(resp,"resp");
     /*异步得到结果resu:分两种{code：0，data}、{code：1，msg}*/
     const resu = resp.data;
+    console.log(resu,"resu")
     if (resu.code === 0) {
       const user = resu.data;
       //分发同步action

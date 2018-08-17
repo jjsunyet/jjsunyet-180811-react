@@ -21,12 +21,7 @@ export default class HeaderSelector extends Component{
   /*
   * 选择头像的函数
   * */
-  selectHeader = ({icon,text}) =>{
-    /*更新当前组件的状态*/
-    this.setState({icon});
-    /*更新父组件的状态*/
-    this.props.setHeader(text);
-  }
+
 
   /*
   * 遍历产生state
@@ -39,7 +34,12 @@ export default class HeaderSelector extends Component{
       this.headerList.push({text,icon:require(`../../assets/images/${text}.png`)})
     }
   }
-
+  selectHeader = ({icon,text}) =>{
+    /*更新当前组件的状态*/
+    this.setState({icon});
+    /*更新父组件的状态*/
+    this.props.setHeader(text);
+  }
 
   render(){
     /*计算头部显示*/
