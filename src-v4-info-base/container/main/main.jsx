@@ -6,8 +6,6 @@ import {NavBar} from 'antd-mobile'
 
 import LaobanInfo from '../laoban-info/laoban-info';
 import DashenInfo from '../dashen-info/dashen-info';
-import Dashen from '../dashen/dashen';
-import Laoban from '../laoban/laoban';
 import {getRedirectPath} from "../../utils/index";
 import {getUser} from '../../redux/actions/actions'
 
@@ -32,6 +30,7 @@ class Main extends Component {
     }
     const {user} = this.props;
     if (!user._id) {
+      console.log(user._id);
       return <div>LOADING……</div>
     }
     const path = this.props.location.pathname;
@@ -56,9 +55,6 @@ class Main extends Component {
         <Switch>
           <Route path='/laobanInfo' component={LaobanInfo}/>
           <Route path='/dashenInfo' component={DashenInfo}/>
-
-          <Route path='/laoban' component={Laoban}/>
-          <Route path='/dashen' component={Dashen}/>
         </Switch>
    {/*     {currentNav ? <NavFooter navList={this.navList}/> : null}*/}
       </div>

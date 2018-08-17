@@ -1,16 +1,15 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-export default class Laoban extends Component {
+class Dashen extends Component {
   render () {
     return (
-      <div>Laoban</div>
+      <div>Dashen</div>
     )
   }
 }
 
-/*
 export default connect(
   state => ({}),
   {}
-)(Laoban)*/
+)(Dashen)

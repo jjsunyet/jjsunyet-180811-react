@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-export default class Laoban extends Component {
+class Laoban extends Component {
   render () {
     return (
       <div>Laoban</div>
@@ -9,8 +9,7 @@ export default class Laoban extends Component {
   }
 }
 
-/*
 export default connect(
   state => ({}),
   {}
-)(Laoban)*/
+)(Laoban)
