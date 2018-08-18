@@ -15,8 +15,7 @@ import {
 const authSuccess = (user) =>({type:AUTH_SUCCESS,data:user});
 const errorMsg = (msg) =>({type:ERROR_MSG,data:msg});
 const receiveUser = (user)=>({type:RECEIVE_USER,data:user});
-/*bug3:因为路由组件需要引用，所以需要暴露出去*/
-export const resetUser = (user) =>({type:RESET_USER,data:user});
+const resetUser = (user) =>({type:RESET_USER,data:user});
 
 /*表单验证*/
 /*注册的异步*/
@@ -89,13 +88,12 @@ export function updateUser(user) {
 }
 
 /*异步获取用户信息*/
-export function getUser(){
+export function getUser(user){
   return async dispatch =>{
     const resp =await reqUser();
     const resu  = resp.data;
     if(resu.code===0){
-      const user = resu.data;
-      dispatch(receiveUser(user));
+      dispatch(receiveUser(resu.data));
     }else{
       dispatch(resetUser(resu.msg))
     }
